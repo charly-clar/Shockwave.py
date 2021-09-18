@@ -27,7 +27,7 @@ class Block():
 
     
     def hash(self):
-         return updatehash(self.previous_hash, self.number, self.data, self.nonce)
+        return updatehash(self.previous_hash, self.number, self.data, self.nonce)
 
     
     #def __str__(self):
