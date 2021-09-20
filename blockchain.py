@@ -12,7 +12,7 @@ def updatehash(*args):
     h.update(hashing_text.encode('utf-8'))
     return h.hexdigest()
 
-#print(updatehash("hello world"))
+print(updatehash("hello world","christelle"))
 
 
 class Block():
@@ -45,9 +45,9 @@ class Blockchain():
 
 def main():
     block = Block("hello world",1)
-    print(block)
+    #print(block)
 
-if __name__ == '__name__':
+if __name__ == '__main__':
     main()
 
 
