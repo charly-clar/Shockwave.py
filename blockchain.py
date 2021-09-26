@@ -12,7 +12,7 @@ def updatehash(*args):
     h.update(hashing_text.encode('utf-8'))
     return h.hexdigest()
 
-print(updatehash("hello world","christelle"))
+#print(updatehash("hello world","christelle"))
 
 
 class Block():
@@ -27,25 +27,65 @@ class Block():
 
     
     def hash(self):
-        return updatehash(self.previous_hash, self.number, self.data, self.nonce)
+        return updatehash(
+            self.previous_hash, 
+            self.number, 
+            self.data, 
+            self.nonce
+        )
 
     
-    #def __str__(self):
-        #return str("Blocks#: %s\nHash: %s\nPrevious: %s\nData: %s\nNonce: %s\n" %(self.number,self.hash(),self.previous_hash, self.data, self.nonce))
+    def __str__(self):
+        return str("Blocks#: %s\nHash: %s\nPrevious:" + 
+            "%s\nData: %s\nNonce: %s\n" %(
+            self.number,
+            self.hash(),
+            self.previous_hash, 
+            self.data, 
+            self.nonce
+            )
+        )
 
 
 class Blockchain():
-    pass
+    difficulty = 4
 
+    def __init__(self,chain=[]):
+        self.chain = chain
+    
+    def add(self, block):
+        self.chain.append({
+            'hash': block.hash(), 
+            'previous': block.previous_hash, 
+            'number': block.number, 
+            'data': block.data, 
+            'nonce': block.nonce
+        })
+    
+    def mine(self, block):
+        try:
+            block.previous_hash = self.chain[-1].get('hash')
+        except IndexError:
+            pass
 
-
-
-
+        while True: 
+            if block.hash()[:4] == "0" * self.difficulty:
+                self.add(block); break
+            else:
+                block.nonce += 1
 
 
 def main():
-    block = Block("hello world",1)
-    #print(block)
+    blockchain = Blockchain()
+    database = ["hello wolrd", "what's up", "hello", "bye"]
+
+    num = 0
+    for data in database:
+        num += 1
+        blockchain.mine(Block(data,num))
+    
+    for block in blockchain.chain:
+        print(block)
 
 if __name__ == '__main__':
     main()
