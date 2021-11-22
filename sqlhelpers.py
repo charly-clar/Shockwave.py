@@ -17,9 +17,6 @@ class Table():
             cur.execute("CREATE TABLE %s(%s)" %(self.table, create_data[:len(create_data)-1]))
             cur.close()
             
-
-    
-       
     def getall(self):
         cur = mysql.connection.cursor()
         result = cur.execute("SELECT * FROM %s" %self.table)
