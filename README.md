@@ -1,2 +1,2 @@
-# BLOCKCHAIN-CRY
-Blockchain technologie in Python 
+# Shockwave
+ Blockchain crytpocurrency exchange dapp created with python. 
