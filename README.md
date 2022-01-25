@@ -1,2 +1,2 @@
 # Shockwave
- Blockchain crytpocurrency exchange dapp created with python. 
+ Blockchain crytpocurrency exchange dapp created with Flask Python. 
